@@ -38,4 +38,8 @@
   $contact->add_message( $_POST['message'], 'Message', 10);
 
   echo $contact->send();
+
+  error_reporting(E_ALL);
+  ini_set('display_errors', 1);
+
 ?>
