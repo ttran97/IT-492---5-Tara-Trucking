@@ -1,4 +1,6 @@
 function calculateQuote() {
+  console.log("Calculating quote...");
+
   // Get the form data
   const from = document.getElementById("from").value;
   const to = document.getElementById("to").value;
@@ -34,4 +36,25 @@ function calculateQuote() {
   // Display the quote
   const quoteAmount = document.getElementById("quote-amount");
   quoteAmount.innerText = "$" + totalFee.toFixed(2);
+}
+
+async function getDistance(from, to) {
+  const apiKey = 'YOUR_API_KEY_HERE'; // Replace with your own API key
+  const apiUrl = `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${from}&destinations=${to}&key=${apiKey}`;
+  
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+    
+    if (data.status === 'OK') {
+      const distance = data.rows[0].elements[0].distance.value;
+      return distance / 1609.344; // Convert meters to miles
+    } else {
+      throw new Error('Failed to get distance');
+    }
+  } catch (error) {
+    console.error(error);
+    alert('Failed to get distance. Please try again later.');
+    return 0;
+  }
 }
