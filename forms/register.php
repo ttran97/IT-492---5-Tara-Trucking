@@ -21,7 +21,7 @@ $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 $servername = "localhost";
 $username = "username";
 $password = "password";
-$dbname = "database_name";
+$dbname = "employees";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
