@@ -1,3 +1,4 @@
+// Define the calculateQuote() function
 function calculateQuote() {
   console.log("Calculating quote...");
 
@@ -27,17 +28,26 @@ function calculateQuote() {
   const weightRate = 0.1;
   const volumeRate = 0.05;
 
-  const distance = getDistance(from, to);
-  const weightFee = weight * weightRate;
-  const volume = length * width * height;
-  const volumeFee = volume * volumeRate;
-  const totalFee = basePrice + (distance * distanceRate) + weightFee + volumeFee;
+  // Get the distance using the getDistance() function
+  getDistance(from, to)
+    .then(distance => {
+      const weightFee = weight * weightRate;
+      const volume = length * width * height;
+      const volumeFee = volume * volumeRate;
+      const totalFee = basePrice + (distance * distanceRate) + weightFee + volumeFee;
 
-  // Display the quote
-  const quoteAmount = document.getElementById("quote-amount");
-  quoteAmount.innerText = "$" + totalFee.toFixed(2);
+      // Display the quote
+      const quoteAmount = document.getElementById("quote-amount");
+      quoteAmount.innerText = "$" + totalFee.toFixed(2);
+    })
+    .catch(error => {
+      console.error(error);
+      alert('Failed to get distance. Please try again later.');
+      return;
+    });
 }
 
+// Define the getDistance() function
 async function getDistance(from, to) {
   const apiKey = 'YOUR_API_KEY_HERE'; // Replace with your own API key
   const apiUrl = `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${from}&destinations=${to}&key=${apiKey}`;
@@ -53,8 +63,6 @@ async function getDistance(from, to) {
       throw new Error('Failed to get distance');
     }
   } catch (error) {
-    console.error(error);
-    alert('Failed to get distance. Please try again later.');
-    return 0;
+    throw error;
   }
 }
