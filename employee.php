@@ -106,11 +106,16 @@
           <ol>
             <li><a href="index.html">Home</a></li>
             <li>Employee Registration</li>
+            
           </ol>
         </div>
       </nav>
     </div><!-- End Breadcrumbs -->
-
+    <?php
+    if(isset($_GET["success"])){
+      echo "<p>Registration successful! Click <a href='dashboard.php'>here</a> to go to the dashboard.</p>";
+    }
+  ?>
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
       <div class="container" data-aos="fade-up">
