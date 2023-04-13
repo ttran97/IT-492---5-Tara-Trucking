@@ -66,3 +66,15 @@ async function getDistance(from, to) {
     throw error;
   }
 }
+
+// Initialize Google Maps Places Autocomplete for the "From" and "To" fields
+function initAutocomplete() {
+  const fromInput = document.getElementById('from');
+  const toInput = document.getElementById('to');
+
+  const fromAutocomplete = new google.maps.places.Autocomplete(fromInput);
+  const toAutocomplete = new google.maps.places.Autocomplete(toInput);
+}
+
+// Initialize the Autocomplete feature when the page loads
+document.addEventListener('DOMContentLoaded', initAutocomplete);
