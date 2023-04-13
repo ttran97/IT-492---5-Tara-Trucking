@@ -49,7 +49,7 @@ function calculateQuote() {
 
 // Define the getDistance() function
 async function getDistance(from, to) {
-  const apiKey = 'YOUR_API_KEY_HERE'; // Replace with your own API key
+  const apiKey = 'AIzaSyCfW2ZTDz1tgFRrRumh1dnPil0cdWRfZ58'; // Replace with your own API key
   const apiUrl = `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${from}&destinations=${to}&key=${apiKey}`;
   
   try {
