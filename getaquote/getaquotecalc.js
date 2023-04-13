@@ -48,6 +48,7 @@ function calculateQuote() {
 }
 
 
+
 // Define the getDistance() function
 async function getDistance(from, to) {
   const apiKey = 'AIzaSyCfW2ZTDz1tgFRrRumh1dnPil0cdWRfZ58'; // Replace with your own API key
