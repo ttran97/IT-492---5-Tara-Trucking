@@ -47,26 +47,27 @@ function calculateQuote() {
     });
 }
 
-
-
 // Define the getDistance() function
-async function getDistance(from, to) {
-  const apiKey = 'AIzaSyCfW2ZTDz1tgFRrRumh1dnPil0cdWRfZ58'; // Replace with your own API key
-  const apiUrl = `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${from}&destinations=${to}&key=${apiKey}`;
-  
-  try {
-    const response = await fetch(apiUrl);
-    const data = await response.json();
-    
-    if (data.status === 'OK') {
-      const distance = data.rows[0].elements[0].distance.value;
-      return distance / 1609.344; // Convert meters to miles
-    } else {
-      throw new Error('Failed to get distance');
-    }
-  } catch (error) {
-    throw error;
-  }
+function getDistance(from, to) {
+  return new Promise((resolve, reject) => {
+    const service = new google.maps.DistanceMatrixService();
+    service.getDistanceMatrix(
+      {
+        origins: [from],
+        destinations: [to],
+        travelMode: google.maps.TravelMode.DRIVING,
+        unitSystem: google.maps.UnitSystem.IMPERIAL,
+      },
+      (response, status) => {
+        if (status === google.maps.DistanceMatrixStatus.OK) {
+          const distance = response.rows[0].elements[0].distance.value;
+          resolve(distance / 1609.344); // Convert meters to miles
+        } else {
+          reject(status);
+        }
+      }
+    );
+  });
 }
 
 // Initialize Google Maps Places Autocomplete for the "From" and "To" fields
