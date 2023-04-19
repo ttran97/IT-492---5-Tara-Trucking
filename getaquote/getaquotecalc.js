@@ -1,3 +1,23 @@
+async function getAverageGasPrice() {
+  const apiKey = 'f662842bc14ecf4ab61087e71aa026d8'; // Replace with your own API key
+  const apiUrl = `https://api.oilpriceapi.com/v1/prices/latest?by_code=USACONSUMER.GAS`;
+
+  try {
+    const response = await fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Apikey ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const data = await response.json();
+    return parseFloat(data.price);
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
 // Define the calculateQuote() function
 function calculateQuote() {
   console.log("Calculating quote...");
