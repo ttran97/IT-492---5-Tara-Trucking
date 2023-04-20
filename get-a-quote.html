@@ -17,6 +17,10 @@
   <link href="assets/img/logotab.jpg" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
+  <!--Get a Quote Calculator-->
+  <script src="getaquote/getaquotecalc.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfW2ZTDz1tgFRrRumh1dnPil0cdWRfZ58&libraries=places"></script>
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -72,7 +76,7 @@
         <li><a href="contact.html">Contact Us</a></li>
 
 <li><a href="faq.html">FAQ</a></li>
-<li><a href="get-a-quote-calc.html">Calculator</a></li>
+<!--<li><a href="get-a-quote-calc.html">Calculator</a></li>-->
   <li><a class="get-a-quote" href="get-a-quote.html">Get a Quote</a></li>
       </ul>
     </nav><!-- .navbar -->
@@ -173,7 +177,44 @@
       </div>
       
     </section><!-- End Get a Quote Section --> 
+<!-- ======= Get a Quote Section ======= -->
+<section id="get-a-quote" class="get-a-quote">
+  <div class="container" data-aos="fade-up">
+    <div class="row g-0">
+      <h5>Dear valued customer, <br><br>
 
+        We would like to remind you that the freight estimates provided by our company are based on the best available information at the time of estimation. While we strive to provide the most accurate estimate possible, please be aware that these estimates are not guaranteed to be 100% accurate.<br><br>
+        
+        Furthermore, please note that these estimates are not binding for our company. The actual cost of freight may vary depending on a number of factors, including but not limited to, changes in fuel prices, route changes, unforeseen delays, and additional services requested by the customer.<br><br>
+        
+        We appreciate your understanding and cooperation in this matter, and we look forward to the opportunity to serve your freight needs. If you have any questions or concerns regarding our freight estimates, please do not hesitate to contact us.<br><br>
+        
+        Sincerely,<br><br>
+        
+        5 Tara Trucking</h5>
+      <div class="col-lg-5 quote-form">
+        
+        <h2>Get a Quote</h2>
+
+        <label for="from">From:</label>
+        <input type="text" id="from" name="from">
+
+        <label for="to">To:</label>
+        <input type="text" id="to" name="to">
+
+        <button type="button" onclick="calculateQuote()">Get Quote</button>
+
+        <div id="quote-results">
+          <p>Your estimated quote is: <span id="quote-amount"></span></p>
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+        <!-- Your content goes here -->
+      </div>
+    </div>
+  </div>
+</section><!-- End Get a Quote Section -->
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->

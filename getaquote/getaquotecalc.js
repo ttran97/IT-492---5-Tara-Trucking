@@ -1,23 +1,3 @@
-async function getAverageGasPrice() {
-  const apiKey = 'f662842bc14ecf4ab61087e71aa026d8'; // Replace with your own API key
-  const apiUrl = `https://api.oilpriceapi.com/v1/prices/latest?by_code=USACONSUMER.GAS`;
-
-  try {
-    const response = await fetch(apiUrl, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Apikey ${apiKey}`,
-        'Content-Type': 'application/json',
-      },
-    });
-
-    const data = await response.json();
-    return parseFloat(data.price);
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
-}
 // Define the calculateQuote() function
 function calculateQuote() {
   console.log("Calculating quote...");
@@ -32,7 +12,7 @@ function calculateQuote() {
     return;
   }
 
-  // Calculate the quote
+  // Constants for the quote calculation
   const milePrice = 0.6;
   const insuranceRate = 0.75;
   const equipmentRate = 0.75;
@@ -42,14 +22,11 @@ function calculateQuote() {
   // Get the distance using the getDistance() function
   getDistance(from, to)
     .then(distance => {
-      const mileFee = distance * milePrice;
-      const fuelFee = distance * fuelRate;
-      const totalFee = mileFee + fuelFee + insuranceRate + equipmentRate + maintenanceRate;
-      const totalPrice = totalFee * 1.2;
+      const totalFee = distance * (milePrice + fuelRate + insuranceRate + equipmentRate + maintenanceRate) * 1.2;
 
       // Display the quote
       const quoteAmount = document.getElementById("quote-amount");
-      quoteAmount.innerText = "$" + totalPrice.toFixed(2);
+      quoteAmount.innerText = "$" + totalFee.toFixed(2);
     })
     .catch(error => {
       console.error(error);
